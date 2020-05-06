@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Garage2_0.Data;
 using Garage2_0.Models;
 using Garage2_0.Models.ViewModels;
+using System.Drawing;
 
 namespace Garage2_0.Controllers
 {
@@ -20,6 +21,20 @@ namespace Garage2_0.Controllers
             _context = context;
         }
 
+        private async Task<IEnumerable<SelectListItem>> ColorsAsync()
+        {
+            return await _context.ParkedVehicle
+                .Select(m => m.Color)
+                .Distinct()
+                .Select(m => new SelectListItem
+                {
+                    Text = m.ToString(),
+                    Value = m.ToString()
+                })
+                .ToListAsync();
+        }
+
+
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(IndexViewModel viewModel)
         {
@@ -27,13 +42,23 @@ namespace Garage2_0.Controllers
                             _context.ParkedVehicle :
                            _context.ParkedVehicle.Where(m => m.RegistrationNumber.StartsWith(viewModel.RegistrationNumber));
 
+           parkedVehicles = string.IsNullOrWhiteSpace(viewModel.Color) ?
+                          parkedVehicles :
+                         parkedVehicles.Where(m => m.Color == viewModel.Color);
+
+
             var model = new IndexViewModel()
             {
                 ParkedVehicles = await parkedVehicles.ToListAsync(),
+                RegistrationNumber = viewModel.RegistrationNumber,
+                Color = viewModel.Color,
+                Colors = await ColorsAsync()
             };
 
             return View(nameof(Index), model);
+
         }
+
 
         // GET: ParkedVehicles/Details/5
         public async Task<IActionResult> Details(int? id)
