@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace Garage2_0.Models.ViewModels
 {
-    public class OwerviewViewModel
+    public class IndexViewModel
     {
-        public VehicleType VType { get; set; }
+        public IEnumerable<ParkedVehicle> ParkedVehicles { get; set; }
         public string RegistrationNumber { get; set; }
-        public DateTime Arrival { get; set; }
 
     }
 }
