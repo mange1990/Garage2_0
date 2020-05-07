@@ -92,12 +92,14 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> Create([Bind("ID,VType,Wheels,RegistrationNumber,Manufacturer,Arrival,Color,VehicleModel")] ParkedVehicle parkedVehicle)
         {
             parkedVehicle.Arrival = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+          
             return View(parkedVehicle);
         }
 
