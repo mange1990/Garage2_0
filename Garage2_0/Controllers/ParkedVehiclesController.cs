@@ -92,6 +92,7 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> Create([Bind("ID,VType,Wheels,RegistrationNumber,Manufacturer,Arrival,Color,VehicleModel")] ParkedVehicle parkedVehicle)
         {
             parkedVehicle.Arrival = DateTime.Now;
+            int test;
             if (ModelState.IsValid)
             {
                 _context.Add(parkedVehicle);
