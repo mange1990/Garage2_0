@@ -38,11 +38,18 @@ namespace Garage2_0.Models
         public string Manufacturer { get; set; }
 
 
+
+        
+        private DateTime _arrival;
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd:HH:mm:ss}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd HH:mm:ss}")]
 
         [Display(Name = "Vehicle parked time")]
-        public DateTime Arrival { get; set; }
+        public DateTime Arrival
+        {
+            get { return DateTime.Now; }
+            set { _arrival = value; }
+        }
 
         [Required]
         [StringLength(15)]
