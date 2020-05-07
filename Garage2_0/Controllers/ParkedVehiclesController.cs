@@ -9,6 +9,7 @@ using Garage2_0.Data;
 using Garage2_0.Models;
 using Garage2_0.Models.ViewModels;
 using System.Drawing;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Garage2_0.Controllers
 {
@@ -92,6 +93,15 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> Create([Bind("ID,VType,Wheels,RegistrationNumber,Manufacturer,Arrival,Color,VehicleModel")] ParkedVehicle parkedVehicle)
         {
             parkedVehicle.Arrival = DateTime.Now;
+
+            var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
+
+            if (found != null)
+            {
+                ModelState.AddModelError("RegistrationNumber", "Registration number already exists");
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(parkedVehicle);
