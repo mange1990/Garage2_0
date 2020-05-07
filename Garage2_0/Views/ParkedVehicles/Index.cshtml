@@ -1,71 +1,23 @@
-﻿@model IEnumerable<Garage2_0.Models.ParkedVehicle>
+﻿@model IndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Parked vehicles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.VType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wheels)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Arrival)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleModel)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wheels)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegistrationNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arrival)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleModel)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<form asp-action="index">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" asp-for="RegistrationNumber" placeholder="Search on registration number..." />
+        <div class="input-group-append">
+            <select asp-for="Color" asp-items="@Model.Colors" class="form-control">
+                <option selected="selected" value="">Color</option>
+            </select>
+        </div>
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i></button>
+        </div>
+    </div>
+</form>
+
+<partial name="IndexListPartial" model="@Model.ParkedVehicles" />
