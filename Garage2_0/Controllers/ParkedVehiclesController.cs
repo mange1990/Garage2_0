@@ -9,7 +9,6 @@ using Garage2_0.Data;
 using Garage2_0.Models;
 using Garage2_0.Models.ViewModels;
 using System.Drawing;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Garage2_0.Controllers
 {
@@ -94,20 +93,13 @@ namespace Garage2_0.Controllers
         {
             parkedVehicle.Arrival = DateTime.Now;
 
-            var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
-
-            if (found != null)
-            {
-                ModelState.AddModelError("RegistrationNumber", "Registration number already exists");
-            }
-
-
             if (ModelState.IsValid)
             {
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+          
             return View(parkedVehicle);
         }
 
@@ -186,9 +178,22 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
+            var arrival = parkedVehicle.Arrival;
+            var checkout = DateTime.Now;
+            var realTime = (decimal)checkout.Subtract(arrival).Seconds / 3600;
+            var chargeTime = (int)Math.Ceiling(realTime);
+            var model = new ReceiptViewModel
+            {
+                RegistrationNumber = parkedVehicle.RegistrationNumber,
+                Arrival = arrival,
+                CheckOut = checkout,
+                ParkingTime = chargeTime,
+                Price = chargeTime * 80
+            };
+
             _context.ParkedVehicle.Remove(parkedVehicle);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("Receipt", model);
         }
 
         private bool ParkedVehicleExists(int id)
