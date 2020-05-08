@@ -1,12 +1,12 @@
 ﻿@model Garage2_0.Models.ParkedVehicle
 
 @{
-    ViewData["Title"] = "Start parking";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Start parking</h1>
+<h1>Create</h1>
 
-<h4>Vehicle details</h4>
+<h1 class="bg-primary border rounded-lg font-italic text-light p-4">Park Vehicle</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,15 +32,16 @@
                 <input asp-for="Manufacturer" class="form-control" />
                 <span asp-validation-for="Manufacturer" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="VehicleModel" class="control-label"></label>
-                <input asp-for="VehicleModel" class="form-control" />
-                <span asp-validation-for="VehicleModel" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
                 <input asp-for="Color" class="form-control" />
                 <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleModel" class="control-label"></label>
+                <input asp-for="VehicleModel" class="form-control" />
+                <span asp-validation-for="VehicleModel" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

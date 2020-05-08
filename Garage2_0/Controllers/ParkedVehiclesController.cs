@@ -92,12 +92,14 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> Create([Bind("ID,VType,Wheels,RegistrationNumber,Manufacturer,Arrival,Color,VehicleModel")] ParkedVehicle parkedVehicle)
         {
             parkedVehicle.Arrival = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+          
             return View(parkedVehicle);
         }
 
@@ -176,9 +178,22 @@ namespace Garage2_0.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
+            var arrival = parkedVehicle.Arrival;
+            var checkout = DateTime.Now;
+            var realTime = (decimal)checkout.Subtract(arrival).Seconds / 3600;
+            var chargeTime = (int)Math.Ceiling(realTime);
+            var model = new ReceiptViewModel
+            {
+                RegistrationNumber = parkedVehicle.RegistrationNumber,
+                Arrival = arrival,
+                CheckOut = checkout,
+                ParkingTime = chargeTime,
+                Price = chargeTime * 80
+            };
+
             _context.ParkedVehicle.Remove(parkedVehicle);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("Receipt", model);
         }
 
         private bool ParkedVehicleExists(int id)
