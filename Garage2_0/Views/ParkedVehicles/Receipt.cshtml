@@ -6,9 +6,7 @@
 
 <h1>Receipt</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -52,9 +50,9 @@
 
     </tbody>
 </table>
-<div class="row align-content-center justify-content-center mp-3 w-75">
-    <input class="btn-primary btn-lg mt-3" type="button" onclick="window.print()" value="Print">
+<div class="row align-content-center justify-content-center mp-3 w-75 hideforprint">
+    <input class="btn-primary btn-lg mt-3" type="button" onclick="optimiseForPrint()" value="Print">
 </div>
-<form asp-action="View">
+<form asp-action="View" class="hideforprint2">
     <a asp-action="Index">Back to List</a>
 </form>
