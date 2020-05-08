@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 
 namespace Garage2_0.Models
@@ -37,13 +38,10 @@ namespace Garage2_0.Models
         [Required]
         [StringLength(15)]
         public string Manufacturer { get; set; }
-
-
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd HH:mm:ss}")]
-
         [Display(Name = "Vehicle parked time")]
-        public DateTime Arrival { get; set; }
+        public DateTime Arrival { get; set; } = DateTime.Now;
 
         [Required]
         [StringLength(15)]
@@ -53,7 +51,6 @@ namespace Garage2_0.Models
         [Required]
         [StringLength(15)]
         public string VehicleModel { get; set; }
-        
-        
+
     }
 }
