@@ -30,7 +30,8 @@ namespace Garage2_0.Models
         public int Wheels { get; set; }
 
         [Display(Name = "Registration number")]
-        [Required]
+        [Required(ErrorMessage = "Enter the Vehicle RegNo!")]
+       
         [StringLength(6, MinimumLength = 6)]
         public string RegistrationNumber { get; set; }
 
