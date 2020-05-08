@@ -4,11 +4,9 @@
     ViewData["Title"] = "CheckOut Vehicle";
 }
 
-<h1>Delete</h1>
-
 <h3>Are you sure you want to  unpark the vehicle?</h3>
 <div>
-    <h4>ParkedVehicle</h4>
+    <h4>@Html.DisplayFor(model => model.RegistrationNumber)</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -58,6 +56,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
         <input type="submit" value="UNPARK" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Back to the garage</a>
     </form>
 </div>
