@@ -187,7 +187,7 @@ namespace Garage2_0.Controllers
             var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
             var arrival = parkedVehicle.Arrival;
             var checkout = DateTime.Now;
-            var realTime = (decimal)checkout.Subtract(arrival).Seconds / 3600;
+            var realTime = (checkout - arrival).TotalSeconds / 3600;
             var chargeTime = (int)Math.Ceiling(realTime);
             var model = new ReceiptViewModel
             {
