@@ -104,6 +104,7 @@ namespace Garage2_0.Controllers
             {
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
+                TempData["message"] = $"Reg Nr: {parkedVehicle.RegistrationNumber} is parked!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -138,6 +139,13 @@ namespace Garage2_0.Controllers
                 return NotFound();
             }
 
+            var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
+
+            if (found != null)
+            {
+                ModelState.AddModelError("RegistrationNumber", "Registration number already exists");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -156,6 +164,7 @@ namespace Garage2_0.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = $"Reg Nr: {parkedVehicle.RegistrationNumber} has been updated!";
                 return RedirectToAction(nameof(Index));
             }
             return View(parkedVehicle);

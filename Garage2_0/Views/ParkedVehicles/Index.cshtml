@@ -19,8 +19,8 @@
         </div>
     </div>
 </form>
-<div class="btn-group col-sm-3 col mr-5 ">
+<div class="btn-group col-sm-3 col mr-5">
     <a class="btn btn-outline-primary " asp-action="Create">Check In</a>
 </div>
-
+<div class="alert text-success">@TempData["message"]</div>
 <partial name="IndexListPartial" model="@Model.ParkedVehicles" />

@@ -3,11 +3,7 @@
 
 // Write your JavaScript code.
 function optimiseForPrint() {
-    document.querySelector(".hideforprint").classList.add('d-none');
-    document.querySelector(".hideforprint2").classList.add('d-none');
-    document.querySelector(".hideforprint3").classList.add('d-none');
+    document.querySelectorAll(".hideforprint").forEach(e => e.classList.add('d-none'));
     window.print();
-    document.querySelector(".hideforprint").classList.remove('d-none');
-    document.querySelector(".hideforprint2").classList.remove('d-none');
-    document.querySelector(".hideforprint3").classList.remove('d-none');
+    document.querySelectorAll(".hideforprint").forEach(e => e.classList.remove('d-none'));
 }
