@@ -91,7 +91,7 @@ namespace Garage2_0.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,VType,Wheels,RegistrationNumber,Manufacturer,Arrival,Color,VehicleModel")] ParkedVehicle parkedVehicle)
         {
-            parkedVehicle.Arrival = DateTime.Now;
+            //parkedVehicle.Arrival = DateTime.Now;
 
             var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
 
@@ -106,7 +106,7 @@ namespace Garage2_0.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-          
+
             return View(parkedVehicle);
         }
 
