@@ -9,6 +9,7 @@ using Garage2_0.Data;
 using Garage2_0.Models;
 using Garage2_0.Models.ViewModels;
 using System.Drawing;
+using Microsoft.AspNetCore.Routing.Patterns;
 
 namespace Garage2_0.Controllers
 {
@@ -44,7 +45,7 @@ namespace Garage2_0.Controllers
 
             var parkedVehicles = string.IsNullOrWhiteSpace(viewModel.RegistrationNumber) ?
                             _context.ParkedVehicle :
-                           _context.ParkedVehicle.Where(m => m.RegistrationNumber.StartsWith(viewModel.RegistrationNumber));
+                           _context.ParkedVehicle.Where(m => m.RegistrationNumber.StartsWith(viewModel.RegistrationNumber.ToUpper()));
 
            parkedVehicles = string.IsNullOrWhiteSpace(viewModel.Color) ?
                           parkedVehicles :
@@ -121,6 +122,11 @@ namespace Garage2_0.Controllers
         {
             //parkedVehicle.Arrival = DateTime.Now;
 
+            parkedVehicle.RegistrationNumber = parkedVehicle.RegistrationNumber.ToUpper();
+            parkedVehicle.Manufacturer = char.ToUpper(parkedVehicle.Manufacturer[0]) + parkedVehicle.Manufacturer.Substring(1);
+            parkedVehicle.Color = char.ToUpper(parkedVehicle.Color[0]) + parkedVehicle.Color.Substring(1);
+            parkedVehicle.VehicleModel = char.ToUpper(parkedVehicle.VehicleModel[0]) + parkedVehicle.VehicleModel.Substring(1);
+
             var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
 
             if (found != null)
@@ -166,6 +172,11 @@ namespace Garage2_0.Controllers
             {
                 return NotFound();
             }
+
+            parkedVehicle.RegistrationNumber = parkedVehicle.RegistrationNumber.ToUpper();
+            parkedVehicle.Manufacturer = char.ToUpper(parkedVehicle.Manufacturer[0]) + parkedVehicle.Manufacturer.Substring(1);
+            parkedVehicle.Color = char.ToUpper(parkedVehicle.Color[0]) + parkedVehicle.Color.Substring(1);
+            parkedVehicle.VehicleModel = char.ToUpper(parkedVehicle.VehicleModel[0]) + parkedVehicle.VehicleModel.Substring(1);
 
             var found = _context.ParkedVehicle.FirstOrDefault(p => (p.RegistrationNumber == parkedVehicle.RegistrationNumber) && (p.ID != parkedVehicle.ID));
 
