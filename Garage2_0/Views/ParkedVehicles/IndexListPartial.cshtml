@@ -4,13 +4,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VType)
+                @Html.DisplayNameFor(model => model.VType)<a asp-action="Index" asp-route-sortOrder="@ViewData["VTypeSortParm"]">&#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)
+                @Html.DisplayNameFor(model => model.RegistrationNumber)<a asp-action="Index" asp-route-sortOrder="@ViewData["RegNrSortParm"]">&#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Arrival)
+                @Html.DisplayNameFor(model => model.Arrival)<a asp-action="Index" asp-route-sortOrder="@ViewData["ArrivalSortParm"]">&#8645;</a>
             </th>
             <th></th>
         </tr>

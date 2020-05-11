@@ -36,8 +36,12 @@ namespace Garage2_0.Controllers
 
 
         // GET: ParkedVehicles
-        public async Task<IActionResult> Index(IndexViewModel viewModel)
+        public async Task<IActionResult> Index(IndexViewModel viewModel, string sortOrder)
         {
+            ViewData["VTypeSortParm"] = sortOrder == "VType" ? "vtype_desc" : "VType";
+            ViewData["RegNrSortParm"] = sortOrder == "RegNr" ? "regnr_desc" : "RegNr";
+            ViewData["ArrivalSortParm"] = sortOrder == "Arrival" ? "arrival_desc" : "Arrival";
+
             var parkedVehicles = string.IsNullOrWhiteSpace(viewModel.RegistrationNumber) ?
                             _context.ParkedVehicle :
                            _context.ParkedVehicle.Where(m => m.RegistrationNumber.StartsWith(viewModel.RegistrationNumber));
@@ -45,6 +49,30 @@ namespace Garage2_0.Controllers
            parkedVehicles = string.IsNullOrWhiteSpace(viewModel.Color) ?
                           parkedVehicles :
                          parkedVehicles.Where(m => m.Color == viewModel.Color);
+
+            switch (sortOrder)
+            {
+                case "VType":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.VType);
+                    break;
+                case "vtype_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.VType);
+                    break;
+                case "RegNr":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.RegistrationNumber);
+                    break;
+                case "arrival_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.Arrival);
+                    break;
+                case "regnr_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.RegistrationNumber);
+                    break;
+                default:
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.Arrival);
+                    break;
+                    
+            }
+
 
 
             var model = new IndexViewModel()
