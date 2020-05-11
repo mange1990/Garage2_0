@@ -167,11 +167,11 @@ namespace Garage2_0.Controllers
                 return NotFound();
             }
 
-            var found = _context.ParkedVehicle.FirstOrDefault(p => p.RegistrationNumber == parkedVehicle.RegistrationNumber);
+            var found = _context.ParkedVehicle.FirstOrDefault(p => (p.RegistrationNumber == parkedVehicle.RegistrationNumber) && (p.ID != parkedVehicle.ID));
 
             if (found != null)
             {
-                ModelState.AddModelError("RegistrationNumber", "Registration number already exists");
+                    ModelState.AddModelError("RegistrationNumber", "Registration number already exists");
             }
 
             if (ModelState.IsValid)
