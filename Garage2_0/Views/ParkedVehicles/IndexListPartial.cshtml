@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Arrival)
             </td>
             <td>
-                @((DateTime.Now - item.Arrival).ToString("hh'\\h 'mm\\m"))
+                @((DateTime.Now - item.Arrival).ToString("dd'\\d 'hh'\\h 'mm\\m"))
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">EDIT</a> |
