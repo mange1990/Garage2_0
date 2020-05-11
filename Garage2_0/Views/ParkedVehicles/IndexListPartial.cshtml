@@ -4,13 +4,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VType)<a asp-action="Index" asp-route-sortOrder="@ViewData["VTypeSortParm"]">&#8645;</a>
+                @Html.DisplayNameFor(model => model.VType)<a asp-action="Index" asp-route-sortOrder="@ViewData["VTypeSortParm"]"> &#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)<a asp-action="Index" asp-route-sortOrder="@ViewData["RegNrSortParm"]">&#8645;</a>
+                @Html.DisplayNameFor(model => model.RegistrationNumber)<a asp-action="Index" asp-route-sortOrder="@ViewData["RegNrSortParm"]"> &#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Arrival)<a asp-action="Index" asp-route-sortOrder="@ViewData["ArrivalSortParm"]">&#8645;</a>
+                @Html.DisplayNameFor(model => model.Arrival)<a asp-action="Index" asp-route-sortOrder="@ViewData["ArrivalSortParm"]"> &#8645;</a>
+            </th>
+            <th>
+                Duration
             </th>
             <th></th>
         </tr>
@@ -26,6 +29,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Arrival)
+            </td>
+            <td>
+                @((DateTime.Now - item.Arrival).ToString("dd'\\d 'hh'\\h 'mm\\m"))
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">EDIT</a> |
