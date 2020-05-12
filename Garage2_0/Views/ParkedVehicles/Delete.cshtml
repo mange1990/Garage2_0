@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "CheckOut";
 }
-<h1 class="bg-info border rounded-lg font-italic text-light p-4">CHECKOUT VEHICLE</h1>
+<h1 class="bg-info border rounded-lg font-italic text-light p-4">CHECK OUT VEHICLE</h1>
 <hr />
-<h3 class="text-danger">Are you sure you want to checkout the vehicle?</h3>
+<h3 class="text-danger">Are you sure you want to check out the vehicle?</h3>
 <div>
     <h4>Reg Nr: @Html.DisplayFor(model => model.RegistrationNumber)</h4>
     <hr />
@@ -56,7 +56,7 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="CHECKOUT" class="btn btn-danger" /> 
+        <input type="submit" value="CHECK OUT" class="btn btn-danger" /> 
         
     </form>
     <div class="mt-2">

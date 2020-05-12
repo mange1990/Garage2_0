@@ -40,7 +40,7 @@ namespace Garage2_0.Models
         public string Manufacturer { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd HH:mm:ss}")]
-        [Display(Name = "Vehicle parked time")]
+        [Display(Name = "Parking start time")]
         public DateTime Arrival { get; set; } = DateTime.Now;
 
         [Required]

@@ -15,12 +15,12 @@ namespace Garage2_0.Models.ViewModels
         public string RegistrationNumber { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd HH:mm:ss}")]
-        [Display(Name = "Vehicle parked time")]
+        [Display(Name = "Parking time")]
         public DateTime Arrival { get; set; }
 
 
         [DisplayFormat(DataFormatString = "{0:yyyy:MM:dd HH:mm:ss}")]
-        [Display(Name = "Vehicle checked out time")]
+        [Display(Name = "Check out time")]
         public DateTime CheckOut { get; set; }
         
         [DisplayFormat(DataFormatString = "{0} kr")]
