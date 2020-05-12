@@ -50,9 +50,10 @@
 
     </tbody>
 </table>
-<div class="row align-content-center justify-content-center mp-3 w-75 hideforprint">
-    <input class="btn-primary btn-lg mt-3" type="button" onclick="optimiseForPrint()" value="Print">
+<div class="container hideforprint">
+    <input class="btn-outline-info btn mb-3" type="button" onclick="optimiseForPrint()" value="Print">
+
+    <form asp-action="View">
+        <a asp-action="Index" class="text-info">Back to the garage</a>
+    </form>
 </div>
-<form asp-action="View" class="hideforprint">
-    <a asp-action="Index">Back to the garage</a>
-</form>

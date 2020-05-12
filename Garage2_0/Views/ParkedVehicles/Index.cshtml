@@ -8,19 +8,19 @@
 <h1 class="text-black-50 bg-info border rounded-lg p-5">PARKED VEHICLES</h1>
 <form asp-action="index">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" asp-for="RegistrationNumber" placeholder="Search on registration number..." />
+        <input type="text" class="form-control" asp-for="RegistrationNumber" placeholder="Search by registration number..." />
         <div class="input-group-append">
             <select asp-for="Color" asp-items="@Model.Colors" class="form-control">
                 <option selected="selected" value="">Color</option>
             </select>
         </div>
         <div class="input-group-append">
-            <button type="submit" class="btn btn-primary">&#128270;Search</button>
+            <button type="submit" class="btn btn-info">&#128270;Search</button>
         </div>
     </div>
 </form>
 <div class="btn-group col-sm-3 col mr-5">
-    <a class="btn btn-outline-primary " asp-action="Create">Check In</a>
+    <a class="btn btn-outline-info " asp-action="Create">Check In</a>
 </div>
-<div class="alert text-success">@TempData["message"]</div>
+<div class="alert text-success font-weight-bold mb-0">@TempData["message"]</div>
 <partial name="IndexListPartial" model="@Model.ParkedVehicles" />

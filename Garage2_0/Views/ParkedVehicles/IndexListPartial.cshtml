@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Garage2_0.Models.ParkedVehicle>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VType)<a asp-action="Index" asp-route-sortOrder="@ViewData["VTypeSortParm"]"> &#8645;</a>
+                @Html.DisplayNameFor(model => model.VType)<a asp-action="Index" asp-route-sortOrder="@ViewData["VTypeSortParm"]" class="text-info"> &#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)<a asp-action="Index" asp-route-sortOrder="@ViewData["RegNrSortParm"]"> &#8645;</a>
+                @Html.DisplayNameFor(model => model.RegistrationNumber)<a asp-action="Index" asp-route-sortOrder="@ViewData["RegNrSortParm"]" class="text-info"> &#8645;</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Arrival)<a asp-action="Index" asp-route-sortOrder="@ViewData["ArrivalSortParm"]"> &#8645;</a>
+                @Html.DisplayNameFor(model => model.Arrival)<a asp-action="Index" asp-route-sortOrder="@ViewData["ArrivalSortParm"]" class="text-info"> &#8645;</a>
             </th>
             <th>
                 Duration
@@ -34,9 +34,9 @@
                 @((DateTime.Now - item.Arrival).ToString("dd'\\d 'hh'\\h 'mm\\m"))
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">EDIT</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">DETAILS</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">CHECKOUT</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="text-info">EDIT</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" class="text-info">DETAILS</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" class="text-info">CHECKOUT</a>
             </td>
         </tr>
 }
