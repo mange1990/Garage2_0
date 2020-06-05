@@ -41,7 +41,7 @@ namespace Garage2_0.Controllers
         {
             ViewData["VTypeSortParm"] = sortOrder == "VType" ? "vtype_desc" : "VType";
             ViewData["RegNrSortParm"] = sortOrder == "RegNr" ? "regnr_desc" : "RegNr";
-            ViewData["ArrivalSortParm"] = sortOrder == "Arrival" ? "arrival_desc" : "Arrival";
+            ViewData["ArrivalSortParm"] = sortOrder == "arrival_desc" ? "Arrival" : "arrival_desc";
 
             var parkedVehicles = string.IsNullOrWhiteSpace(viewModel.RegistrationNumber) ?
                             _context.ParkedVehicle :
@@ -71,10 +71,7 @@ namespace Garage2_0.Controllers
                 default:
                     parkedVehicles = parkedVehicles.OrderBy(s => s.Arrival);
                     break;
-                    
             }
-
-
 
             var model = new IndexViewModel()
             {
@@ -83,9 +80,7 @@ namespace Garage2_0.Controllers
                 Color = viewModel.Color,
                 Colors = await ColorsAsync()
             };
-
             return View(nameof(Index), model);
-
         }
 
 
